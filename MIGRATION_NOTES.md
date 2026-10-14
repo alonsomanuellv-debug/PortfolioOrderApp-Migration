@@ -49,3 +49,10 @@ Notas para la migracion
 
     -- Se reemplaza ComplianceTraceModule basado en IHttpModule por ComplianceTraceMiddleware, debido a que System.Web no está disponible en ASP.NET Core 8.
     -- Se conserva Stopwatch para medir la duración de las solicitudes y se reemplaza Trace.WriteLine() por ILogger.LogInformation().
+
+
+## Posibles malas practicas
+
+    --OrderTicketController no valida cantidades positivas
+    --Manejo de archivos: en el proyecto original no se validaban los formatos ni el límite de 5 MB
+    --la interfaz web, la lógica de negocio y los componentes de infraestructura pertenecen al mismo proyecto, lo que puede aumentar el acoplamiento y dificultar el mantenimiento cuando la aplicación crece.
