@@ -16,7 +16,11 @@ builder.Services.AddScoped<OrderTicketService>();
 
 builder.Services.AddSingleton<ComplianceAuditLogger>();
 
+builder.Services.AddScoped<DepositRequestService>();
+
 var app = builder.Build();
+
+app.UseMiddleware<ComplianceTraceMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
