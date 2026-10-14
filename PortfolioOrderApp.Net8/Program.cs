@@ -1,7 +1,20 @@
+using PortfolioOrderApp.Net8.Infrastructure;
+using PortfolioOrderApp.Net8.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession();
+
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddScoped<OrderTicketService>();
+
+builder.Services.AddSingleton<ComplianceAuditLogger>();
 
 var app = builder.Build();
 
@@ -17,6 +30,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSession();
 
 app.UseAuthorization();
 
